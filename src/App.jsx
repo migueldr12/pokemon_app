@@ -26,13 +26,33 @@ const COLORES_TIPO = {
 };
 
 const URL_API = "https://pokeapi.co/api/v2";
+const CLAVE_TIPO_ACTIVO = "pokemon-app:tipo-activo";
+
+function recuperarTipoActivo() {
+  try {
+    // Recupera la última selección; la primera vez se muestran todos.
+    return localStorage.getItem(CLAVE_TIPO_ACTIVO) || "Todos";
+  } catch {
+    // La aplicación sigue funcionando si el navegador bloquea el almacenamiento.
+    return "Todos";
+  }
+}
 
 function App() {
   const [types, setTypes] = useState([]);
-  const [tipoActivo, setTipoActivo] = useState("Todos");
+  const [tipoActivo, setTipoActivo] = useState(recuperarTipoActivo);
   const [pokemones, setPokemones] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    try {
+      // Guarda el filtro cada vez que cambia para conservarlo al recargar.
+      localStorage.setItem(CLAVE_TIPO_ACTIVO, tipoActivo);
+    } catch {
+      // Si no se puede guardar, el filtro continúa funcionando en memoria.
+    }
+  }, [tipoActivo]);
 
   const seleccionarTipo = (tipo) => {
     setTipoActivo(tipo);
