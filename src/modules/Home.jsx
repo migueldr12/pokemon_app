@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import FilterBar from "./components/FilterBar";
-import PokemonCard from "./components/PokemonCard";
-import "./styles/app.css";
+import { Link } from "react-router";
+import { traducirTipo } from "../pokemonTypes";
+import FilterBar from "../components/FilterBar";
+import PokemonCard from "../components/PokemonCard";
+import "../styles/app.css";
 
 const COLORES_TIPO = {
   normal: "#A8A77A",
@@ -38,7 +40,7 @@ function recuperarTipoActivo() {
   }
 }
 
-function App() {
+function Home() {
   const [types, setTypes] = useState([]);
   const [tipoActivo, setTipoActivo] = useState(recuperarTipoActivo);
   const [pokemones, setPokemones] = useState([]);
@@ -110,6 +112,14 @@ function App() {
         onSeleccionar={seleccionarTipo}
       />
 
+      {tipoActivo !== "Todos" && (
+        <p>
+          <Link className="detail-link" to={`/tipo/${tipoActivo}`}>
+            Ver información del tipo {traducirTipo(tipoActivo)}
+          </Link>
+        </p>
+      )}
+
       {cargando && <p className="estado">Cargando pokémon...</p>}
       {error && <p className="estado estado--error">{error}</p>}
 
@@ -142,4 +152,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

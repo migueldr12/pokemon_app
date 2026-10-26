@@ -44,6 +44,11 @@ body {
   color: #fff;
 }
 
+.detail-link {
+  color: #b8000e;
+  text-underline-offset: 3px;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));

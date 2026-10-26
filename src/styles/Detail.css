@@ -1,0 +1,90 @@
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 24px 0;
+}
+
+.detail-image {
+  width: min(240px, 100%);
+  height: 240px;
+  object-fit: contain;
+}
+
+.detail-title {
+  margin: 8px 0;
+  text-transform: capitalize;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.detail-panel {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.detail-panel h2,
+.detail-panel h3 {
+  margin-top: 0;
+}
+
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.detail-tag {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #fce8ea;
+  color: #9b0010;
+  text-transform: capitalize;
+  text-decoration: none;
+}
+
+.detail-tag:hover {
+  background: #f7cdd1;
+  text-decoration: underline;
+}
+
+.detail-data {
+  margin: 0;
+}
+
+.detail-data > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px dashed #ddd;
+  padding: 10px 0;
+}
+
+.detail-data dd {
+  margin: 0;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.detail-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 1fr));
+  gap: 10px 24px;
+  padding-left: 20px;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

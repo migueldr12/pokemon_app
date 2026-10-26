@@ -1,4 +1,6 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router";
+import { traducirTipo } from "../pokemonTypes";
 import "../styles/PokemonCard.css";
 
 function PokemonCard({ id, nombre, imagen, tipos, altura, peso, stats, color }) {
@@ -8,15 +10,17 @@ function PokemonCard({ id, nombre, imagen, tipos, altura, peso, stats, color }) 
         <img className="card__sprite" src={imagen} alt={nombre} loading="lazy" />
         <div>
           <span className="card__id">#{String(id).padStart(3, "0")}</span>
-          <h2 className="card__title">{nombre}</h2>
+          <h2 className="card__title">
+            <Link to={`/pokemon/${nombre}`}>{nombre}</Link>
+          </h2>
         </div>
       </div>
 
       <div className="card__badges">
         {tipos.map((tipo) => (
-          <span key={tipo} className="card__badge">
-            {tipo}
-          </span>
+          <Link key={tipo} className="card__badge" to={`/tipo/${tipo}`}>
+            {traducirTipo(tipo)}
+          </Link>
         ))}
       </div>
 
@@ -37,6 +41,9 @@ function PokemonCard({ id, nombre, imagen, tipos, altura, peso, stats, color }) 
           Peso <strong>{peso} kg</strong>
         </span>
       </footer>
+      <Link className="card__detail" to={`/pokemon/${nombre}`}>
+        Ver información completa
+      </Link>
     </article>
   );
 }

@@ -1,0 +1,1 @@
+El local storage lo utilice para recordar el ultimo tipo que eligio el usuario al entrar a la pokedex, en el app.jsx

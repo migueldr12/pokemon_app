@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { traducirTipo } from "../pokemonTypes";
 
 function FilterBar({ tipos, tipoActivo, onSeleccionar }) {
   return (
@@ -10,6 +11,7 @@ function FilterBar({ tipos, tipoActivo, onSeleccionar }) {
         <button
           className={`filter-btn ${tipoActivo === "Todos" ? "active" : ""}`}
           onClick={() => onSeleccionar("Todos")}
+          aria-pressed={tipoActivo === "Todos"}
         >
           Todos
         </button>
@@ -22,8 +24,9 @@ function FilterBar({ tipos, tipoActivo, onSeleccionar }) {
             key={tipo}
             className={`filter-btn ${tipoActivo === tipo ? "active" : ""}`}
             onClick={() => onSeleccionar(tipo)}
+            aria-pressed={tipoActivo === tipo}
           >
-            {tipo}
+            {traducirTipo(tipo)}
           </button>
         ))}
       </nav>
